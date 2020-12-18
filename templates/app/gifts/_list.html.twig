@@ -1,0 +1,43 @@
+
+<div class="btn float-right btn-info" data-toggle="modal" data-target="#add_gift">
+    Ajouter un cadeau
+</div>
+
+<br/>
+<br/>
+<div id="gift_list" class="row">
+
+    {% if gifts|length == 0 %}
+        <em class="col-md-12"> Aucun cadeau trouvé ... </em>
+    {% endif %}
+
+    {% for g in gifts %}
+
+
+        <div class="col-md-2">
+            {{ g.publishedAt|date('d/m/Y H:i') }}
+        </div>
+        <div class="col-md-2">
+            {{ g.title }}
+        </div>
+        <div class="col-md-4">
+            {{ g.summary }}
+        </div>
+        <div class="col-md-2">
+
+            <div class="btn btn-info" data-toggle="modal" data-target="#edit_gift_{{ g.id }}">
+                EDITER
+            </div>
+
+        </div>
+        <div class="col-md-2">
+
+            <a class="btn btn-danger" href="{{ path('deleteGift',{'id' : g.id}) }}">
+                Supprimer
+            </a>
+
+        </div>
+
+    {%  endfor %}
+
+</div>

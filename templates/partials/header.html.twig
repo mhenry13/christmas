@@ -1,0 +1,138 @@
+<header>
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="">
+            <div class="navbar-header col-md-1">
+                <a class="navbar-brand slogan" href="{{ path('homepage') }}">
+                    <em>
+                        Christmas 2020
+                    </em>
+                </a>
+
+                <button type="button" class="navbar-toggle"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse">
+                    <span class="sr-only">{{ 'menu.toggle_nav'|trans }}</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="col-md-11">
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav navbar-right ">
+
+                        {% if app.user %}
+
+                            {{ app.user.fullname }}
+
+                            <li class="nain_info_live col-md-3">
+                                {#<div class="col-md-6">#}
+                                {#<span>#}
+                                {#</span>#}
+
+                                {#</div>#}
+                                {#<div class="col-md-6">#}
+
+
+                                {#</div>#}
+
+                            </li>
+
+                            <li class="col-md-7">
+                                <div class="col-sm-3">
+
+                                </div>
+                                <div class="col-sm-3">
+
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <div class="btn-group btn-block">
+                                        <button type="button" class="btn btn-default btn-lg btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            LES MONDES   <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+
+
+                                        </ul>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <div class="btn-group navbar-right btn-block">
+                                        <button type="button" class="btn btn-default btn-lg btn-block dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            DICO   <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            {#<li><a href="{{ path('guilde_list') }}" target=""> La liste des guildes </a></li>#}
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </li>
+
+                            {#dropup#}
+                            <li class=" userinfo  col-md-2">
+
+                                {#<span class="">#}
+                                {#{% for r in app.user.roles %}#}
+                                {#{{ r }}#}
+                                {#{% endfor %}#}
+                                {#</span>#}
+                                {#<a href="{{ path('security_logout') }}" class="pull-right">#}
+                                    {#<i class="fa fa-sign-out" aria-hidden="true"></i>#}
+                                {#</a>#}
+
+                                {% block header_navigation_links %}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {#<a href="{{ path('admin_post_index') }}" class="pull-right">#}
+                                                    {#<i class="fas fa-heartbeat"></i>#}
+                                                    {#<i class="fa fa-lock" aria-hidden="true"></i> #}
+                                                    {#LIVE &nbsp;#}
+                                                {#</a>&nbsp;#}
+                                                {#<a href="{{ path('stats') }}" class="pull-right">#}
+                                                    {#<i class="fas fa-chart-line"></i>  STATS  &nbsp;#}
+                                                {#</a>&nbsp;#}
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
+                                {% endblock %}
+                                {#<ul class="dropdown-menu user" role="menu" aria-labelledby="user">#}
+                                {#<li>#}
+                                {#<a href="{{ path('user_edit') }}">#}
+
+                                {##}
+                                {#</a>#}
+                                {#</li>#}
+                                {#<li>#}
+                                {#<a href="{{ path('security_logout') }}">#}
+                                {#<i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}#}
+                                {#</a>#}
+                                {#</li>#}
+                                {#</ul>#}
+                            </li>
+
+                        {% else %}
+                            Non connecté.
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {% if app.user %}
+        {#{{ include('partials/quicklink.html.twig') }}#}
+    {% endif %}
+
+
+</header>

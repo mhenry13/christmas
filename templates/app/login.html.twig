@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'login' %}
+{% block javascripts %}
+    {{ parent() }}
+    {#{{ encore_entry_script_tags('login') }}#}
+{% endblock %}
+
+{% block body %}
+    <div id="login">
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-sm-12" style="text-align:center;">
+            <div class="well">
+                <form action="{{ path('login') }}" method="post">
+                    <fieldset>
+                        <legend><i class="fa fa-lock" aria-hidden="true"></i> BIENVENUE ET JOYEUX NOEL </legend>
+                        <div class="form-group">
+                            {#<label for="username"> IDENTIFIANT </label>#}
+                            <input type="text" id="username" name="_username" placeholder="IDENTIFIANT" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            {#<label for="password"> MOT DE PASSE </label>#}
+                            <input type="password" id="password" placeholder="MOT DE PASSE" name="_password" class="form-control" />
+                        </div>
+                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> SE CONNECTER
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}
+
